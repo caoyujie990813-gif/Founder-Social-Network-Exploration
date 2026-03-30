@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  
+  --color-brand-50: #f5f7ff;
+  --color-brand-100: #ebf0fe;
+  --color-brand-500: #4f46e5;
+  --color-brand-600: #4338ca;
+  --color-brand-700: #3730a3;
+}
+
+@layer base {
+  body {
+    @apply bg-[#fcfcfd] text-slate-900 antialiased selection:bg-indigo-100 selection:text-indigo-900;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+  }
+  
+  .premium-border {
+    @apply border border-slate-200/60 ring-1 ring-slate-900/5;
+  }
+}
+
+/* Markdown styling */
+.prose h1, .prose h2, .prose h3 {
+  @apply font-display font-bold tracking-tight text-slate-900 mt-6 mb-4;
+}
+
+.prose p {
+  @apply text-slate-600 leading-relaxed mb-4;
+}
+
+.prose ul {
+  @apply list-none space-y-2 mb-4 text-slate-600 pl-0;
+}
+
+.prose li {
+  @apply flex items-start gap-2 before:content-['•'] before:text-indigo-500 before:font-bold;
+}
+
+/* Mermaid SVG Polish */
+.mermaid svg {
+  @apply max-w-full h-auto transition-all duration-500;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.03));
+}
+
+.mermaid .node rect, 
+.mermaid .node circle, 
+.mermaid .node ellipse, 
+.mermaid .node polygon, 
+.mermaid .node path {
+  @apply transition-all duration-300;
+  stroke-width: 1.5px;
+}
+
+.mermaid .node:hover rect,
+.mermaid .node:hover circle,
+.mermaid .node:hover ellipse,
+.mermaid .node:hover polygon,
+.mermaid .node:hover path {
+  @apply brightness-95;
+  filter: drop-shadow(0 10px 15px rgb(0 0 0 / 0.1));
+  transform: translateY(-2px);
+}
+
+.mermaid .edgePath path {
+  stroke-width: 2px !important;
+  stroke: #cbd5e1 !important;
+  transition: all 0.3s ease;
+}
+
+.mermaid .edgePath:hover path {
+  stroke: #6366f1 !important;
+  stroke-width: 3px !important;
+}
+
+.mermaid .edgeLabel {
+  @apply text-[10px] font-medium text-slate-500 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-md border border-slate-100 shadow-sm;
+}
+
+.mermaid .cluster rect {
+  @apply fill-slate-50/30 stroke-slate-200 stroke-[1px];
+  rx: 16px;
+  ry: 16px;
+  stroke-dasharray: 8 4;
+}
+
+.mermaid .cluster .label {
+  @apply font-display font-bold text-slate-400 uppercase tracking-widest text-[10px];
+}
+
+.mermaid .label {
+  @apply font-sans font-semibold;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
+
+/* Specific class overrides for premium feel */
+.mermaid .founder rect, .mermaid .founder circle {
+  filter: drop-shadow(0 4px 12px rgb(79 70 229 / 0.25));
+}
